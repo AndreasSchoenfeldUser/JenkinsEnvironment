@@ -2,7 +2,7 @@ timestamps {
 node() {
 
 	stage("prepare image") {
-		scm checkout
+		checkout scm
 		echo "inhalt einer datei" > datei.txt
 	}
     def url
