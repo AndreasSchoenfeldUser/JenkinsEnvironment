@@ -1,5 +1,10 @@
 timestamps {
 node() {
+
+	stage("prepare image") {
+		scm checkout
+		echo "inhalt einer datei" > datei.txt
+	}
     def url
     stage("create instance") {
         withAWSCredentials([credentials: 'aws']) {
