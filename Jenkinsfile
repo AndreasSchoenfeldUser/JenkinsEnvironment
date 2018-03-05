@@ -3,7 +3,7 @@ node() {
 
 	stage("prepare image") {
 		checkout scm
-		echo "inhalt einer datei" > datei.txt
+		def jenkinsImage = docker.build("my-jenkins:${env.BUILD_ID}")
 	}
     def url
     stage("create instance") {
