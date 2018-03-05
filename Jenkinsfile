@@ -3,7 +3,7 @@ node() {
 
 	stage("prepare image") {
 		checkout scm
-		def jenkinsImage = docker.build("my-jenkins:${env.BUILD_ID}")
+//		def jenkinsImage = docker.build("my-jenkins:${env.BUILD_ID}")
 	}
     def url
     stage("create instance") {
@@ -16,8 +16,9 @@ node() {
     }
     stage("start jenkins") {
         docker.withServer(url) {
-            def myImage = docker.image('jenkins/jenkins')
-            myImage.pull()
+			def myImage = docker.build("my-jenkins:${env.BUILD_ID}")
+ //           def myImage = docker.image('jenkins/jenkins')
+ //           myImage.pull()
             myImage.run('-p 8080:8080')
         }
     }
